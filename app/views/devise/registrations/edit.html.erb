@@ -1,0 +1,109 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-4">
+        <h2 class="title is-2">Edit Your Profile</h2>
+
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <div class="field">
+            <div class="control">
+              <%= f.input :email,
+                      required: true,
+                      wrapper: false,
+                      input_html: { class: "input" },
+                      input_label: { class: "label" },
+                      :error => false %>
+            </div>
+          <% unless resource.errors[:email].empty? %>
+            <p class="help is-danger">Please enter a valid e-mail</p>
+          <% end %>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= f.input :name,
+                      required: true,
+                      wrapper: false,
+                      input_html: { class: "input" },
+                      input_label: { class: "label" },
+                      :error => false %>
+            </div>
+          <% unless resource.errors[:username].empty? %>
+            <p class="help is-danger">Please enter a valid username</p>
+          <% end %>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div class="field">
+            <div class="control">
+              <%= f.input :password,
+                      required: true,
+                      wrapper: false,
+                      input_html: { class: "input" },
+                      input_label: { class: "label" },
+                      :error => false,
+                      autocomplete: "new-password",
+                      label: "New password" %>
+            </div>
+          <% unless resource.errors[:password].empty? %>
+            <p class="help is-danger">Please enter a valid password</p>
+          <% end %>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= f.input :password_confirmation,
+                      required: true,
+                      wrapper: false,
+                      input_html: { class: "input" },
+                      input_label: { class: "label" },
+                      :error => false,
+                      autocomplete: "new-password",
+                      label: "New password confirmation" %>
+            </div>
+          <% unless resource.errors[:password_confirmation].empty? %>
+            <p class="help is-danger">Passwords do not match</p>
+          <% end %>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= f.input :current_password,
+                      required: true,
+                      wrapper: false,
+                      input_html: { class: "input" },
+                      input_label: { class: "label" },
+                      :error => false %>
+            </div>
+          <% unless resource.errors[:current_password].empty? %>
+            <p class="help is-danger">Please enter your current password to apply changes</p>
+          <% end %>
+          </div>
+          
+          <div class="field">
+            <div class="control">
+              <%= f.button :submit, "Update", class: "button is-primary is-medium" %>
+            </div>
+          </div>
+          
+        <% end %>
+        <br />
+        
+        <div class="field">
+          <div class="control">
+          <%= link_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-danger" %></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <%= link_to "Back", :back, class: "button is-link" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

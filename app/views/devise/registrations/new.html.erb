@@ -1,0 +1,78 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-4">
+        <h2 class="title is-2">Sign Up</h2>
+
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <div class="field">
+            <div class="control">
+              <%= f.input :email,
+                      required: true,
+                      wrapper: false,
+                      input_html: { class: "input" },
+                      input_label: { class: "label" },
+                      :error => false %>
+            </div>
+          <% unless resource.errors[:email].empty? %>
+            <p class="help is-danger">Please enter a valid e-mail</p>
+          <% end %>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= f.input :name,
+                      required: true,
+                      wrapper: false,
+                      input_html: { class: "input" },
+                      input_label: { class: "label" },
+                      :error => false %>
+            </div>
+          <% unless resource.errors[:email].empty? %>
+            <p class="help is-danger">The username is not valid</p>
+          <% end %>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= f.input :password,
+                      required: true,
+                      wrapper: false,
+                      input_html: { class: "input" },
+                      input_label: { class: "label" },
+                      :error => false %>
+            </div>
+          <% unless resource.errors[:password].empty? %>
+            <p class="help is-danger">Please enter a valid password</p>
+          <% end %>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= f.input :password_confirmation,
+                      required: true,
+                      wrapper: false,
+                      input_html: { class: "input" },
+                      input_label: { class: "label" },
+                      :error => false %>
+            </div>
+          <% unless resource.errors[:password_confirmation].empty? %>
+            <p class="help is-danger">Passwords do not match</p>
+          <% end %>
+          </div>
+          
+          <div class="field">
+            <div class="control">
+              <%= f.button :submit, "Sign up", class: "button is-primary is-medium" %>
+            </div>
+          </div>
+          
+        <% end %>
+        <br />
+        
+        <%= render "devise/shared/links" %>
+
+      </div>
+    </div>
+  </div>
+</section>

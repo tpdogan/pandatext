@@ -1,0 +1,57 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-4">
+        <h2 class="title is-2">Log In</h2>
+
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <% if flash[:alert] %>
+            <div class="field">
+              <p class="control has-text-danger"><%= flash[:alert] %></p>
+            </div>
+          <% end %>
+          
+          <div class="field">
+            <div class="control">
+              <%= f.input :email,
+                      required: true,
+                      wrapper: false,
+                      input_html: { class: "input" },
+                      input_label: { class: "label" } %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= f.input :password,
+                      required: true,
+                      wrapper: false,
+                      input_html: { class: "input" },
+                      input_label: { class: "label" },
+                      autocomplete: "current-password" %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= f.input :remember_me,
+                      wrapper: false,
+                      as: :boolean if devise_mapping.rememberable? %>
+            </div>
+          </div>
+          
+          <div class="field">
+            <div class="control">
+              <%= f.button :submit, "Log In", class: "button is-primary is-medium" %>
+            </div>
+          </div>
+          
+        <% end %>
+        <br />
+        
+        <%= render "devise/shared/links" %>
+
+      </div>
+    </div>
+  </div>
+</section>
