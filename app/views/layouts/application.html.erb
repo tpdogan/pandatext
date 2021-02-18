@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Pandatext</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,8 +11,52 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if flash[:notice] %>
+      <div class='notification is-primary global-notification'>
+        <p class='notice'><%= notice %></p>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class='notification is-danger global-notification'>
+        <p class='alert'><%= alert %></p>
+      </div>
+    <% end %>
+
+    <nav class='navbar is-primary' role='navigation' aria-label='main navigation'>
+      <div class="container">
+        <div class="navbar-brand">
+          <%= link_to root_path, class: "navbar-item" do %>
+            <h1 class="title is-5">PTXT</h1>
+          <% end %>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="field is-grouped">
+              <p class="control">
+                <%= link_to 'New Room', root_path, class: "button is-black has-text-weight-bold" %>
+              </p>
+              
+              <% if animal_signed_in? %>
+                <p class="control">
+                  <%= link_to current_animal.name, edit_animal_registration_path, class: "button is-primary has-text-weight-bold" %>
+                </p>
+                <p>
+                  <%= link_to "Logout", destroy_animal_session_path, method: :delete, class: "button is-primary has-text-weight-bold" %>
+                </p>
+              <% else %>
+                <p class="control">
+                  <%= link_to "Sign In", new_animal_session_path, class: "button is-primary has-text-weight-bold" %>
+                </p>
+                <p class="control">
+                  <%= link_to "Sign Up", new_animal_registration_path, class: "button is-primary has-text-weight-bold" %>
+                </p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,35 @@
+.zoo {
+  display: grid;
+  width: 100%;
+  min-height: 280px;
+  background-color: #e1fda5;
+  grid-template-columns: repeat(3,1fr);
+  grid-column-gap: 30px;
+  //grid-template-rows: repeat(3, 250px);
+  //grid-row-gap: 30px;
+  padding: 15px;
+  border-radius: 1rem;
+}
+.cage {
+  position: relative;
+  border: 4px solid gray;
+  background-color: #e6fde7;
+}
+.bar {
+  position: absolute;
+  height: 100%;
+  width: 4px;
+  background-color: gray;
+}
+.bar:first-child {
+  left: 25%;
+}
+.bar:nth-child(2) {
+  left: calc(50% - 2px);
+}
+.bar:last-child {
+  right: 25%;
+}
+.navbar-brand {
+  margin-left: 0 !important;
+}
