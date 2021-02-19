@@ -1,6 +1,6 @@
 class CageChannel < ApplicationCable::Channel
   def subscribed
-    stream_from 'cage'#"cage_#{params[:cageNumber]}"
+    stream_from "cage"
   end
 
   def unsubscribed
