@@ -7,3 +7,9 @@
     <% end %>
   <% end %>
 </div>
+<div class="hidden">
+  <%= simple_form_for(Cage.new) do |f| %>
+    <%= f.input :name %>
+    <%= f.submit %>
+  <% end %>
+</div>

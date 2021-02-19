@@ -1,16 +1,43 @@
 <div class="cage-inside has-background-primary-light">
   <div class="title is-6 has-text-centered py-2"><%= @cage.name.downcase.capitalize %></div>
-  <div id="text-history"></div>
+  <div id="text-history">
+    <div id="text-old">
+      <% @cage.anthropotexts.each do |text| %>
+        <div style='display: inline-block; width: 100%;'>
+          <div class=<%= 'report-' + ( text.animal_id == current_animal.id ? 'right' : 'left' ) %> >
+            <div class='fairy'>
+              <div class='name is-capitalized'><%= text.animal.name %></div>
+              <div class='time pl-4'><%= text.created_at.strftime('%H:%M') %></div>
+            </div>
+            <div class='tale'><%= text.body %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <%= hidden_field_tag(current_animal.name, nil, id: 'current_animal') %>
-  <form action="" id="text-form">
-    <input type="text" id="text-input">
-    <button class="button is-primary">Send</button>
-  </form>
   
+  <%= form_for [ Anthropotext.new ], remote: true do |f| %>
+    <%= hidden_field_tag('cage_id', nil, value: @cage.id) %>
+    <%= hidden_field_tag('animal_id', nil, value: current_animal.id) %>
+    <%= f.text_field :body, label: false, wrapper: false %>
+    <%= f.submit 'Send', class: "button is-primary", id: 'message-send' %>
+  <% end %>
+
   <div class="hidden">
     <%= simple_form_for(Cage.new) do |f| %>
       <%= f.input :name %>
       <%= f.submit %>
     <% end %>
   </div>
+
+  <% params %>
 </div>
+
+<% if false %>
+  
+  <form action="" id="text-form">
+    <input type="text" id="text-input">
+    <button class="button is-primary">Send</button>
+  </form>
+<% end %>

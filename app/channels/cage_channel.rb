@@ -1,6 +1,9 @@
 class CageChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "cage"
+    if params[:id].to_i > 0
+      cage = Cage.find(params[:id])
+      stream_for cage
+    end
   end
 
   def unsubscribed
@@ -8,8 +11,9 @@ class CageChannel < ApplicationCable::Channel
   end
 
   def receive(data)
+    cage = Cage.find(params[:id])
     data['animal'] = current_animal
     data['time'] = DateTime.now.strftime('%H:%M')
-    ActionCable.server.broadcast('cage', data)
+    CageChannel.broadcast_to(cage, data)
   end
 end
