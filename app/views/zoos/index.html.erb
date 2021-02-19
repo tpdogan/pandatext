@@ -1,7 +1,9 @@
 <div class="zoo has-background-primary">
-  <%= link_to cages_path do %>
-    <div class="cage has-background-primary-light">
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-    </div>
+  <% Cage.all.each do |cage| %>
+    <%= link_to cages_path(id: cage.id) do %>
+      <div class="cage has-background-primary-light">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      </div>
+    <% end %>
   <% end %>
 </div>

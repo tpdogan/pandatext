@@ -1,3 +1,25 @@
+// General
+.modal-background {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: #333333a8;
+  z-index: 100;
+}
+.modal {
+  width: 400px;
+  height: 200px;
+  background-color: #ebfffc;
+  position: absolute;
+  left: calc(50% - 200px);
+  top: calc(50% - 100px);
+}
+.hidden {
+  max-width: 0;
+  max-height: 0;
+  display: none;
+}
+// Zoo
 .zoo {
   display: grid;
   width: 100%;

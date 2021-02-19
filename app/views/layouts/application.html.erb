@@ -23,33 +23,34 @@
     <% end %>
 
     <nav class='navbar is-primary' role='navigation' aria-label='main navigation'>
-      <div class="container">
-        <div class="navbar-brand">
-          <%= link_to root_path, class: "navbar-item" do %>
-            <h1 class="title is-5">PTXT</h1>
+      <div class='container'>
+        <div class='navbar-brand'>
+          <%= link_to root_path, class: 'navbar-item' do %>
+            <h1 class='title is-5'>PTXT</h1>
           <% end %>
         </div>
 
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="field is-grouped">
-              <p class="control">
-                <%= link_to 'New Room', root_path, class: "button is-black has-text-weight-bold" %>
-              </p>
+        <div class='navbar-end'>
+          <div class='navbar-item'>
+            <div class='field is-grouped'>
               
               <% if animal_signed_in? %>
-                <p class="control">
-                  <%= link_to current_animal.name, edit_animal_registration_path, class: "button is-primary has-text-weight-bold" %>
+                <p class='control'>
+                  <button class='button is-black has-text-weight-bold' id='new_cage_button'>New Cage</button>
+                </p>
+                <p class='control'>
+                  <%= link_to current_animal.name, edit_animal_registration_path, class: 'button is-primary has-text-weight-bold' %>
                 </p>
                 <p>
-                  <%= link_to "Logout", destroy_animal_session_path, method: :delete, class: "button is-primary has-text-weight-bold" %>
+                  <%= link_to 'Logout', destroy_animal_session_path, method: :delete, class: 'button is-primary has-text-weight-bold' %>
                 </p>
+                <%= javascript_pack_tag 'newCage' %>
               <% else %>
-                <p class="control">
-                  <%= link_to "Sign In", new_animal_session_path, class: "button is-primary has-text-weight-bold" %>
+                <p class='control'>
+                  <%= link_to 'Sign In', new_animal_session_path, class: 'button is-primary has-text-weight-bold' %>
                 </p>
-                <p class="control">
-                  <%= link_to "Sign Up", new_animal_registration_path, class: "button is-primary has-text-weight-bold" %>
+                <p class='control'>
+                  <%= link_to 'Sign Up', new_animal_registration_path, class: 'button is-primary has-text-weight-bold' %>
                 </p>
               <% end %>
             </div>
@@ -58,9 +59,9 @@
       </div>
     </nav>
 
-    <div class="container">
-      <section class="section">
-        <p class="title is-4 is-uppercase has-text-centered">panda-txt</p>
+    <div class='container'>
+      <section class='section'>
+        <p class='title is-4 is-uppercase has-text-centered'>panda-txt</p>
           <%= yield %>
       </section>
     </div>
