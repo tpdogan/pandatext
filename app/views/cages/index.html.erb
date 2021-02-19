@@ -1,5 +1,6 @@
 <div class="cage-inside has-background-primary-light">
   <div id="text-history"></div>
+  <%= hidden_field_tag(current_animal.name, nil, id: 'current_animal') %>
   <form action="" id="text-form">
     <input type="text" id="text-input">
     <button class="button is-primary">Send</button>

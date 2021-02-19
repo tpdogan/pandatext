@@ -11,7 +11,7 @@ module ApplicationCable
       if verified_animal = env['warden'].user
         verified_animal
       else
-        reject_unauthorized_animal
+        reject_unauthorized_connection
       end
     end
   end

@@ -16,9 +16,20 @@ const cageChannel = consumer.subscriptions.create("CageChannel", {
   },
 
   template(data) {
-    const main = data['text']['body']
-    return `<div class='report'>
-              <div class='tale'>${main}</div>
+    console.log(data)
+    const name = data['animal']['name']
+    const time = data['time']
+    const main = data['text']
+    const viewer = document.getElementById('current_animal').name
+    const side = name == viewer ? 'right' : 'left'
+    return `<div style="display: inline-block; width: 100%;">
+              <div class='report-${side}'>
+                <div class='fairy'>
+                  <div class='name is-capitalized'>${name}</div>
+                  <div class='time pl-4'>(${time})</div>
+                </div>
+                <div class='tale'>${main}</div>
+              </div>
             </div>`
   }
 });
@@ -30,11 +41,8 @@ document.addEventListener('turbolinks:load', () => {
       e.preventDefault()
       const text = document.getElementById('text-input').value
       if (text != '') {
-        const message = {
-          body: text
-        }
         document.getElementById('text-input').value = ''
-        cageChannel.send({text: message})
+        cageChannel.send({text: text})
       }
     })
   }

@@ -8,6 +8,8 @@ class CageChannel < ApplicationCable::Channel
   end
 
   def receive(data)
+    data['animal'] = current_animal
+    data['time'] = DateTime.now.strftime('%H:%M')
     ActionCable.server.broadcast('cage', data)
   end
 end
